@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="wrapper">
+    <div id="categories"></div>
+    <div id="products"></div>
+    <div id="product"></div>
+</div>
+<div id="info"></div>
+
+<form name="buyerDetails" id="buyerDetails">
+    <p><input type="text" name="fullName" id="fullName" placeholder="enter your full name"></p>
+    <select name="yourCity" id="yourCity">
+        <option value="0">select city</option>
+        <option value="1">Kharkiv</option>
+        <option value="2">Kyiv</option>
+        <option value="3">Dnipro</option>
+        <option value="4">Odesa</option>
+        <option value="5">Zaporizhia</option>
+    </select>
+    <p><input type="number" name="addressOfPost" id="addressOfPost" placeholder="branch of 'New Post' " min="1"/></p>
+    <p><input type="radio" name="payment" value="Cash"/> Cash </p>
+    <p><input type="radio" name="payment" value="Bank card"/> Bank card </p>
+    <p><textarea name="comments" id="comments" cols="20" rows="3" placeholder="Comments on the order"></textarea>
+    </p>
+    <p><input type="submit" value="Send" id="SendBtn"/></p>
+</form>
+<div id="orderInfo">
+    <p><b>Order Information:</b></p>
+    <p id="fullNameInfo"></p>
+    <p id="yourCityInfo"></p>
+    <p id="addressOfPostInfo"></p>
+    <p id="paymentInfo"></p>
+    <p id="commentsInfo"></p>
+
+
+</div>
+<script src="./js/data.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
