@@ -80,15 +80,67 @@ function showDeliveryInfo(event) {
         document.getElementById("addressOfPostInfo").textContent = "Address: " + addressOfPost + " post office";
         document.getElementById("paymentInfo").textContent = "Payment: " + payment;
         document.getElementById("commentsInfo").textContent = "Comments: " + comments;
+        document.getElementById("newOrder").addEventListener("click", function () {
+            window.location.href = "index.html";
+        });
 
+        //localStorage
+        const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+        const newOrder = {
+            fullName: fullName,
+            yourCity: yourCity,
+            addressOfPost: addressOfPost,
+            payment: payment,
+            comments: comments
+        };
+        existingOrders.push(newOrder);
+        localStorage.setItem('orders', JSON.stringify(existingOrders));
     });
-
-
 }
 
+function showMyOrders(event) {
+    event.preventDefault();
+    document.querySelector(".shop").style.display = "none";
+    document.querySelector(".ordersList").style.display = "block";
+    document.querySelector("#myOrders").style.display = "none";
+    document.querySelector("#backBtn").style.display = "block";
+}
 
+function showMyShop(event) {
+    event.preventDefault();
+    document.querySelector(".shop").style.display = "block";
+    document.querySelector(".ordersList").style.display = "none";
+    document.querySelector("#myOrders").style.display = "block";
+}
 
+function displayOrdersFromLocalStorage() {
+    const localOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const ordersList = document.getElementById('orders');
+    ordersList.innerHTML = '';
+    if (localOrders.length === 0) {
+        const emptyListMessage = document.createElement('p');
+        emptyListMessage.textContent = 'Список заказов пуст';
+        ordersList.appendChild(emptyListMessage);
+    } else {
+        localOrders.forEach((order, index) => {
+            const orderItem = document.createElement('li');
+            orderItem.textContent = `Order № ${index + 1}: ${order.fullName}, ${order.yourCity}, ${order.addressOfPost}, ${order.payment}, ${order.comments}`;
+            const infoButton = document.createElement('button');
+            infoButton.textContent = 'Order details';
+            infoButton.addEventListener('click', () => {
 
-
-
+            })
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => {
+                localOrders.splice(index, 1);
+                localStorage.setItem('orders', JSON.stringify(localOrders));
+                displayOrdersFromLocalStorage();
+            });
+            orderItem.appendChild(infoButton);
+            orderItem.appendChild(deleteButton);
+            ordersList.appendChild(orderItem);
+        });
+    }
+}
 
