@@ -72,6 +72,7 @@ function showDeliveryInfo(event) {
             event.preventDefault();
             return;
         }
+
         document.getElementById("buyerDetails").style.display = "none";
         document.getElementById("orderInfo").style.display = "block";
 
@@ -113,6 +114,55 @@ function showMyShop(event) {
     document.querySelector("#myOrders").style.display = "block";
 }
 
+function showOrderDetails(index) {
+    const localOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const order = localOrders[index];
+
+    const detailsContainer = document.getElementById('orderDetails');
+    detailsContainer.innerHTML = '';
+
+    if (order) {
+        const orderContainer = document.createElement('div');
+
+        const fullNameParagraph = document.createElement('p');
+        fullNameParagraph.textContent = `Full Name: ${order.fullName}`;
+
+        const yourCityParagraph = document.createElement('p');
+        yourCityParagraph.textContent = `Your city: ${order.yourCity} `;
+
+        const addressParagraph = document.createElement('p');
+        addressParagraph.textContent = `Address: ${order.addressOfPost}`;
+
+        const paymentParagraph = document.createElement('p');
+        paymentParagraph.textContent = `Payment: ${order.payment}`;
+
+        const commentsParagraph = document.createElement('p');
+        commentsParagraph.textContent = `Comments: ${order.comments}`;
+
+
+
+        orderContainer.appendChild(fullNameParagraph);
+        orderContainer.appendChild(yourCityParagraph);
+        orderContainer.appendChild(addressParagraph);
+        orderContainer.appendChild(paymentParagraph);
+        orderContainer.appendChild(commentsParagraph);
+
+
+        detailsContainer.appendChild(orderContainer);
+    } else {
+        detailsContainer.textContent = 'Order details not found.';
+    }
+}
+
+function deleteOrder(index) {
+    const localOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    localOrders.splice(index, 1);
+    localStorage.setItem('orders', JSON.stringify(localOrders));
+    displayOrdersFromLocalStorage();
+    const detailsContainer = document.getElementById('orderDetails');
+    detailsContainer.innerHTML = '';
+}
+
 function displayOrdersFromLocalStorage() {
     const localOrders = JSON.parse(localStorage.getItem('orders')) || [];
     const ordersList = document.getElementById('orders');
@@ -124,18 +174,28 @@ function displayOrdersFromLocalStorage() {
     } else {
         localOrders.forEach((order, index) => {
             const orderItem = document.createElement('li');
-            orderItem.textContent = `Order № ${index + 1}: ${order.fullName}, ${order.yourCity}, ${order.addressOfPost}, ${order.payment}, ${order.comments}`;
+            const cityNames = {
+                '0': 'select city',
+                '1': 'Kharkiv',
+                '2': 'Kyiv',
+                '3': 'Dnipro',
+                '4': 'Odesa',
+                '5': 'Zaporizhia'
+            };
+            const cityName = cityNames[order.yourCity];
+            orderItem.textContent = `Order № ${index + 1}: ${order.fullName}, ${cityName} `;
             const infoButton = document.createElement('button');
+            infoButton.setAttribute("type", "button");
             infoButton.textContent = 'Order details';
+            infoButton.setAttribute('data-id', order.id);
             infoButton.addEventListener('click', () => {
+                showOrderDetails(index);
+            });
 
-            })
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
             deleteButton.addEventListener('click', () => {
-                localOrders.splice(index, 1);
-                localStorage.setItem('orders', JSON.stringify(localOrders));
-                displayOrdersFromLocalStorage();
+                deleteOrder(index);
             });
             orderItem.appendChild(infoButton);
             orderItem.appendChild(deleteButton);
@@ -143,4 +203,3 @@ function displayOrdersFromLocalStorage() {
         });
     }
 }
-

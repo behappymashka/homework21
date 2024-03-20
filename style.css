@@ -1,6 +1,7 @@
 #wrapper {
     display: flex;
     gap: 20px;
+
 }
 
 #wrapper > div {
@@ -11,16 +12,163 @@
 
 #buyerDetails {
     display: none;
-    text-align: end;
+}
+
+.ordersList {
+    display: none;
+}
 
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    padding: 0;
+    background-color: #f4f4f4;
+}
 
+#wrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+#categories, #products, #product {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    margin-top: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button[type="submit"],
+button[type="button"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #45a049;
 }
 
 #orderInfo {
     display: none;
-    text-align: end;
+    margin-top: 20px;
 }
-.ordersList{
-    display: none;
+
+.ordersList h2 {
+    margin-top: 20px;
+}
+
+#orderDetails {
+    margin-top: 20px;
+}
+
+#orders {
+    list-style: none;
+    padding: 0;
+}
+
+#orders li {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#orders li button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#orders li button:hover {
+    background-color: #ff4c00;
+}
+
+#orderDetails p {
+    margin: 5px 0;
+}
+
+#orderInfo {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 600px;
+
+}
+
+#orderInfo p {
+    margin-bottom: 10px;
+}
+
+#orderInfo p:last-child {
+    margin-bottom: 0;
+}
+
+#orderInfo b {
+    color: #333; /* Цвет текста */
+}
+
+#newOrder {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Зеленый цвет кнопки */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+#newOrder:hover {
+    background-color: #45a049; /* Цвет кнопки при наведении */
+}
+
+#orderDetails {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9; /* Светло-серый фон */
+    border: 1px solid #ddd; /* Светло-серая рамка */
+    border-radius: 5px;
 }

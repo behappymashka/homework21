@@ -54,3 +54,13 @@ const data = [
         ],
     },
 ];
+
+const cityNames = {
+    '0': 'select city',
+    '1': 'Kharkiv',
+    '2': 'Kyiv',
+    '3': 'Dnipro',
+    '4': 'Odesa',
+    '5': 'Zaporizhia'
+};
+const cityName = cityNames[order.yourCity];
